@@ -196,39 +196,40 @@ document.addEventListener('DOMContentLoaded', function () {
     cursorDot.classList.add('cursor-dot');
     document.body.appendChild(cursorDot);
 
-    document.addEventListener('mousemove', function (e) {
+    function updateCursorPosition(e) {
         cursorDot.style.left = e.clientX + 'px';
         cursorDot.style.top = e.clientY + 'px';
-    });
+    }
+
+    document.addEventListener('mousemove', updateCursorPosition);
 
     const elementsToHideCursor = document.querySelectorAll('a, .contact-c, button');
-    
-    elementsToHideCursor.forEach(element => {
-        element.addEventListener('mouseenter', function () {
-            cursorDot.classList.add('hovered');
-            element.style.cursor = 'none';
-        });
-        element.addEventListener('mouseleave', function () {
-            cursorDot.classList.remove('hovered');
-            element.style.cursor = 'default';
-        });
-    });
 
-    document.querySelectorAll('canvas').forEach(canvas => {
-        canvas.addEventListener('mouseenter', function() {
-            cursorDot.style.display = 'none';
-        });
-
-        canvas.addEventListener('mouseleave', function() {
-            cursorDot.style.display = 'block';
-        });
-    });
     
     function checkScreenSize() {
-        if (window.innerWidth < 991) {
+        if (window.innerWidth <= 991) {
             cursorDot.style.display = 'none';
         } else {
-            cursorDot.style.display = 'block';
+            elementsToHideCursor.forEach(element => {
+                element.addEventListener('mouseenter', function () {
+                    cursorDot.classList.add('hovered');
+                    element.style.cursor = 'none';
+                });
+                element.addEventListener('mouseleave', function () {
+                    cursorDot.classList.remove('hovered');
+                    element.style.cursor = 'default';
+                });
+            });
+
+            document.querySelectorAll('canvas').forEach(canvas => {
+                canvas.addEventListener('mouseenter', function() {
+                    cursorDot.style.display = 'none';
+                });
+        
+                canvas.addEventListener('mouseleave', function() {
+                    cursorDot.style.display = 'block';
+                });
+            });
         }
     }
 
@@ -236,30 +237,5 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', checkScreenSize);
 });
 
+/////////////////////////////////////////////////////////////////////
 
-
-
-// gsap.registerPlugin(ScrollTrigger)
-
-// const tl = gsap.timeline({
-//   scrollTrigger: {
-//       trigger: '.my-project',
-//       pin: true,
-//       start: 'top-=70 top',
-//       end: 'bottom top',
-//       scrub: 1,
-//       markers: true
-//     }
-// })
-
-// tl.to('.project-card .card-text', {
-//   height: 0,
-//   paddingBottom: 0,
-//   opacity: 0,
-//   stagger: .2,
-// })
-// tl.to('.bottom-col .card', {
-//     yPercent: -30, // Move cards up by 100% of their height
-//     stagger: 0.5, // Stagger the animations for each card
-//     ease: 'power1.inOut',
-// }, '>')
