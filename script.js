@@ -191,6 +191,54 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /////////////////////////////////////////////////////////////////////
 
+document.addEventListener('DOMContentLoaded', function () {
+    const cursorDot = document.createElement('div');
+    cursorDot.classList.add('cursor-dot');
+    document.body.appendChild(cursorDot);
+
+    document.addEventListener('mousemove', function (e) {
+        cursorDot.style.left = e.clientX + 'px';
+        cursorDot.style.top = e.clientY + 'px';
+    });
+
+    const elementsToHideCursor = document.querySelectorAll('a, .contact-c, button');
+    
+    elementsToHideCursor.forEach(element => {
+        element.addEventListener('mouseenter', function () {
+            cursorDot.classList.add('hovered');
+            element.style.cursor = 'none';
+        });
+        element.addEventListener('mouseleave', function () {
+            cursorDot.classList.remove('hovered');
+            element.style.cursor = 'default';
+        });
+    });
+
+    document.querySelectorAll('canvas').forEach(canvas => {
+        canvas.addEventListener('mouseenter', function() {
+            cursorDot.style.display = 'none';
+        });
+
+        canvas.addEventListener('mouseleave', function() {
+            cursorDot.style.display = 'block';
+        });
+    });
+    
+    function checkScreenSize() {
+        if (window.innerWidth < 991) {
+            cursorDot.style.display = 'none';
+        } else {
+            cursorDot.style.display = 'block';
+        }
+    }
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+});
+
+
+
+
 // gsap.registerPlugin(ScrollTrigger)
 
 // const tl = gsap.timeline({

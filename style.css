@@ -78,6 +78,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  cursor: none; 
 }
 /* .home-page, .about-me, .my-project, .contact-me {
     overflow-x: hidden;
@@ -242,20 +243,20 @@ h3 {
   opacity: 0.4;
 }
 
-.contract-c {
+.contact-c {
   height: 300px;
   transition: 0.3s ease-in-out;
 }
-.contract-c .bi {
+.contact-c .bi {
   width: 48px;
   height: 48px;
   transition: 0.5s ease-out;
 }
-.contract-c h4 {
+.contact-c h4 {
   transition: 0.5s ease-out;
 }
 
-.card.contract-c:hover {
+.card.contact-c:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   background-color: var(--first-color);
   .bi {
@@ -267,7 +268,7 @@ h3 {
     filter: invert(1);
   }
 }
-.contract-c{
+.contact-c{
   cursor: pointer;
   
 }
@@ -331,6 +332,9 @@ footer {
 
 /* Responsive 991px*/
 @media only screen and (max-width: 991px) {
+  .cursor-dot{
+    display: none;
+  }
   .navbar .container-fluid {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px);
@@ -402,7 +406,7 @@ footer {
     flex-direction: column;
     gap: 1rem;
   }
-  .contract-c {
+  .contact-c {
     width: 100%;
     border-radius: 10px !important;
   }
@@ -434,7 +438,7 @@ footer {
     flex-direction: column;
     gap: 1rem;
   }
-  .contract-c {
+  .contact-c {
     width: 100%;
     border-radius: 10px !important;
   }
@@ -482,4 +486,21 @@ footer {
   .section-header h1{
     font-size: 3.7rem;
   }
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease, width 0.2s ease, height 0.2s ease;
+  z-index: 9999;
+}
+
+.cursor-dot.hovered {
+  width: 30px; /* Increase size */
+  height: 30px; /* Increase size */
 }
