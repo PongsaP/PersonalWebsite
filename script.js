@@ -191,6 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /////////////////////////////////////////////////////////////////////
 
+// Cursor Function
 document.addEventListener('DOMContentLoaded', function () {
     const cursorDot = document.createElement('div');
     cursorDot.classList.add('cursor-dot');
