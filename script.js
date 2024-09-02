@@ -316,17 +316,3 @@ window.addEventListener("resize", () => {
   resizeTimeout = setTimeout(initAnimations, 200);
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-  const loadingScreen = document.getElementById('loading-screen');
-  const loaderCircle = document.querySelector('.loader-circle');
-
-  window.addEventListener('load', function() {
-    loaderCircle.classList.add('scale-fade-out');
-    loaderCircle.addEventListener('animationend', () => {
-      loadingScreen.style.opacity = '0';
-      loadingScreen.addEventListener('transitionend', () => {
-        loadingScreen.style.display = 'none';
-      });
-    });
-  });
-});
